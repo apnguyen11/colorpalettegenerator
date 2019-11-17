@@ -27,46 +27,65 @@ class App extends React.Component{
             isLock: false
         }
     }
-    handleClick = (id) => {
-        console.log(id)
-        // if(this.state.card1.isLock == false){
-        //     this.setState({
-        //         card1: {
-        //             id:1,
-        //             color: randomize(),
-        //             isLock: false
-        //         }
-        //     })
-        // }
-        // if(this.state.card2.isLock == false){
-        //     this.setState({
-        //         card2: {
-        //             id:2, 
-        //             color: randomize(),
-        //             isLock: false
-        //         }
-        //     })
-        // }
-        // if(this.state.card3.isLock == false){
-        //     this.setState({
-        //         card3: {
-        //             id:3,
-        //             color: randomize(),
-        //             isLock: false  
-        //         }
-        //     })
-        // }
-        // if(this.state.card4.isLock == false){
-        //     this.setState({
-        //         card4: {
-        //             id:4,
-        //             color: randomize(),
-        //             isLock: false  
-        //         }
-        //     })
-        // }
+    handleClick = () => {
+        // console.log(id)
+        const newColorCards = [this.state]
+        // console.log(this.state.card1)
+        if(this.state.card1.isLock == false){
+            this.setState({
+                card1: {
+                    id:1,
+                    color: randomize(),
+                    isLock: false
+                }
+            })
+        }
+        if(this.state.card2.isLock == false){
+            this.setState({
+                card2: {
+                    id:2, 
+                    color: randomize(),
+                    isLock: false
+                }
+            })
+        }
+        if(this.state.card3.isLock == false){
+            this.setState({
+                card3: {
+                    id:3,
+                    color: randomize(),
+                    isLock: false  
+                }
+            })
+        }
+        if(this.state.card4.isLock == false){
+            this.setState({
+                card4: {
+                    id:4,
+                    color: randomize(),
+                    isLock: false  
+                }
+            })
+        }
        
     }
+    toggleLock1 = () => {
+        //Check that id is valid array index
+        this.state.card1.isLock = !this.state.card1.isLock
+    }
+    toggleLock2 = () => {
+        //Check that id is valid array index
+        this.state.card2.isLock = !this.state.card2.isLock
+    }
+    toggleLock3 = () => {
+        //Check that id is valid array index
+        this.state.card3.isLock = !this.state.card3.isLock
+    }
+    toggleLock4 = () => {
+        //Check that id is valid array index
+        this.state.card4.isLock = !this.state.card4.isLock
+    }
+    
 
 
    render(){
@@ -76,10 +95,10 @@ class App extends React.Component{
              <button onClick={this.handleClick} className="btn btn-secondary m-1">RANDOMIZE COLORS</button>  
         </div></h1>
             <div className="w-100 d-flex" style={{height: "100vh"}}>
-             <ColorCard color={this.state.card1.color} action={this.handleClick}/>
-             <ColorCard color={this.state.card2.color} action={this.handleClick}/>
-             <ColorCard color={this.state.card3.color} action={this.handleClick}/>
-             <ColorCard color={this.state.card4.color} action={this.handleClick}/>   
+             <ColorCard color={this.state.card1.color} isLock={this.state.card1.isLock} action={this.toggleLock1} />
+             <ColorCard color={this.state.card2.color} isLock={this.state.card2.isLock} action={this.toggleLock2}/>
+             <ColorCard color={this.state.card3.color} isLock={this.state.card3.isLock} action={this.toggleLock3}/>
+             <ColorCard color={this.state.card4.color} isLock={this.state.card4.isLock} action={this.toggleLock4}/>   
             </div>
         </div>
         )
@@ -103,13 +122,18 @@ function randomize(){
 // }
 
  const ColorCard = function(props){
-     
+        let btnText = 'UNLOCKED'
+    
+        if(props.isLock){
+            btnText = 'Locked'
+        }
+        console.log(props)
         return(
             <div style={{backgroundColor: props.color}} className="w-100 d-flex flex-column align-items-center justify-content-center">
                 <h1>{
                   props.color
                 }</h1>
-                <button onClick={props.action.bind("sdfs")} className="btn btn-dark">UNLOCK</button>
+                <button onClick={props.action} className="btn btn-dark">{btnText}</button>
             </div>
         )
     
