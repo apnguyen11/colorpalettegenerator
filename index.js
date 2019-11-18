@@ -7,23 +7,23 @@ class App extends React.Component{
     state = {
         card1: {
             id: 1,
-            color: "blue",
+            color: "#0000ff",
             isLock: false
             
         },
         card2: {
             id: 2,
-            color: "red",
+            color: "#FF0000",
             isLock: false
         },
         card3: {
             id: 3,
-            color: "green",
+            color: "#00ff00",
             isLock: false
         },
         card4: {
             id: 4,
-            color: "yellow",
+            color: "#ffff00",
             isLock: false
         }
     }
@@ -71,19 +71,24 @@ class App extends React.Component{
     }
     toggleLock1 = () => {
         //Check that id is valid array index
+        console.log(this.state, '*****')
         this.state.card1.isLock = !this.state.card1.isLock
+        this.setState({})
     }
     toggleLock2 = () => {
         //Check that id is valid array index
         this.state.card2.isLock = !this.state.card2.isLock
+        this.setState({})
     }
     toggleLock3 = () => {
         //Check that id is valid array index
         this.state.card3.isLock = !this.state.card3.isLock
+        this.setState({})
     }
     toggleLock4 = () => {
         //Check that id is valid array index
         this.state.card4.isLock = !this.state.card4.isLock
+        this.setState({})
     }
     
 
@@ -127,7 +132,7 @@ function randomize(){
         if(props.isLock){
             btnText = 'Locked'
         }
-        console.log(props)
+        // console.log(props)
         return(
             <div style={{backgroundColor: props.color}} className="w-100 d-flex flex-column align-items-center justify-content-center">
                 <h1>{
